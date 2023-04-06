@@ -57,6 +57,15 @@ class Connect4Game {
 		}
 		return null;
 	}
+
+	// placeInTable: adds players piece to the board
+	placeInTable(y, x) {
+		const piece = document.createElement('div');
+		piece.classList.add('piece');
+		piece.classList.add(`player${this.currPlayer}`);
+		const place = document.getElementById(`${y}-${x}`);
+		place.append(piece);
+	}
 }
 
 const game = new Connect4Game();
