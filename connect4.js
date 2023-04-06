@@ -152,4 +152,9 @@ class Connect4Game {
 	}
 }
 
-const game = new Connect4Game();
+document.getElementById('start-game').addEventListener('click', () => {
+	const p1 = document.getElementById('p1-name');
+	const p2 = document.getElementById('p2-name');
+	new Connect4Game(p1.value, p2.value);
+	console.log(p1.value);
+});
