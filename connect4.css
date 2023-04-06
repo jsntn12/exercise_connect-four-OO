@@ -15,18 +15,26 @@ body{
   border-radius: 10px;
 }
 
-.game-board{
+/* .game-board{
   margin: 15px auto;
   padding: 30px;
   border: #404040 solid 1px;
   background-color: #e3e2e2;
   border-radius: 15px;
   display: inline-block;
+} */
+
+.board{
+  margin: 15px auto;
+  padding: 30px;
+  border: #404040 solid 2px;
+  background-color: #c9c9c9;
+  border-radius: 15px;
 }
 
 input, button{
   padding: 15px;
-  margin: 5px;
+  margin: 5px auto;
   border: none;
   font-family:Arial, Helvetica, sans-serif;
   font-size: 1.5rem;

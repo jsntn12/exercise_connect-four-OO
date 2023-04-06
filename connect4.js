@@ -7,6 +7,7 @@ class Connect4Game {
 		this.width = width;
 		this.board = [];
 		this.makeBoard();
+		this.makeHtmlBoard();
 	}
 
 	// makeBoard: create game board structure. board = array of rowws, each row is an array of cells.
@@ -23,6 +24,7 @@ class Connect4Game {
 	// makeHtmlBoard: creates html table with height x width
 	makeHtmlBoard() {
 		const htmlBoard = document.getElementById('board');
+		htmlBoard.classList.add('board');
 
 		// create column-top and added initial player class
 		const topRow = document.createElement('tr');
@@ -155,6 +157,8 @@ class Connect4Game {
 document.getElementById('start-game').addEventListener('click', () => {
 	const p1 = document.getElementById('p1-name');
 	const p2 = document.getElementById('p2-name');
+	let game = document.getElementById('delete-after-start');
+	game.innerHTML = '';
+
 	new Connect4Game(p1.value, p2.value);
-	console.log(p1.value);
 });
