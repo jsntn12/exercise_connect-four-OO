@@ -71,6 +71,40 @@ class Connect4Game {
 	endGame(msg) {
 		setTimeout(() => alert(msg), 250);
 	}
+
+	// handleClick: handles the click of column-top, checks for empty spot, drops piece in place, and checks for win
+	handleClick(evt) {
+		// get id from clicked cell
+		const x = +evt.target.id;
+		const y = this.findSpotForCol(x);
+
+		// gets next spot in column. If none, ignores click
+		if (y === null) {
+			return;
+		}
+
+		// places piece in the board and adds it to HTML table
+		this.placeInTable(y, x);
+		this.board[y][x] = this.currPlayer;
+
+		// checks for win
+		if (this.checkForWin()) {
+			return this.endGame(`Player ${currPlayer} won!`);
+		}
+
+		// checks for tie
+		if (this.board.every((row) => row.every((cell) => cell))) {
+			return endGame('The game is a draw! \n Try again');
+		}
+
+		// switch players
+		this.currPlayer = this.currPlayer === 1 ? 2 : 1;
+
+		// changes the color of the piece being dropped to the current player
+		let headerColumnColor = document.getElementById('column-top');
+		headerColumnColor.classList.toggle('p1');
+		headerColumnColor.classList.toggle('p2');
+	}
 }
 
 const game = new Connect4Game();
