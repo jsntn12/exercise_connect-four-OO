@@ -28,7 +28,7 @@ class Connect4Game {
 		const topRow = document.createElement('tr');
 		topRow.setAttribute('id', 'column-top');
 		topRow.classList.add('p1');
-		topRow.addEventListener('click', handleClick);
+		topRow.addEventListener('click', this.handleClick);
 
 		// creates column-top row where players drop piece
 		for (let x = 0; x < this.width; x++) {
@@ -48,6 +48,14 @@ class Connect4Game {
 			}
 			htmlBoard.append(row);
 		}
+	}
+
+	// findSpotForCol: return the top empty spot given the column || null if filled
+	findSpotForCol(x) {
+		for (let spot = this.height - 1; spot >= 0; spot--) {
+			if (!this.board[spot][x]) return spot;
+		}
+		return null;
 	}
 }
 
