@@ -105,6 +105,51 @@ class Connect4Game {
 		headerColumnColor.classList.toggle('p1');
 		headerColumnColor.classList.toggle('p2');
 	}
+
+	// checkForWin; checks the board cells for a winner
+	checkForWin() {
+		const _win = (cell) =>
+			cell.every(
+				([y, x]) =>
+					y >= 0 &&
+					y < this.height &&
+					x >= 0 &&
+					x < this.width &&
+					board[y][x] === this.currPlayer
+			);
+
+		for (let y = 0; y < this.height; y++) {
+			for (let x = 0; x < this.width; x++) {
+				const horiz = [
+					[y, x],
+					[y, x + 1],
+					[y, x + 2],
+					[y, x + 3],
+				];
+				const vert = [
+					[y, x],
+					[y + 1, x],
+					[y + 2, x],
+					[y + 3, x],
+				];
+				const diagDR = [
+					[y, x],
+					[y + 1, x + 1],
+					[y + 2, x + 2],
+					[y + 3, x + 3],
+				];
+				const diagDL = [
+					[y, x],
+					[y + 1, x - 1],
+					[y + 2, x - 2],
+					[y + 3, x - 3],
+				];
+				if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
+					return true;
+				}
+			}
+		}
+	}
 }
 
 const game = new Connect4Game();
