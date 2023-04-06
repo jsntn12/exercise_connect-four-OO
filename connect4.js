@@ -1,7 +1,7 @@
 // Players p1 and p2 alternate turn. On each turn, a price is dropped into a column until a player get four in arow or the board is full.
 
 class Connect4Game {
-	constructor(p1 = 'js', p2 = 'tk', height = 6, width = 7) {
+	constructor(p1 = 'Red', p2 = 'Blue', height = 6, width = 7) {
 		this.players = [p1, p2];
 		this.height = height;
 		this.width = width;
@@ -74,6 +74,9 @@ class Connect4Game {
 
 	// endGame: announces the end of the game
 	endGame(msg) {
+		let removeEvt = document.getElementById('column-top');
+		removeEvt.removeEventListener('click', this.handleGameClick);
+		removeEvt.setAttribute('class', '');
 		setTimeout(() => alert(msg), 250);
 	}
 
