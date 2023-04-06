@@ -66,6 +66,11 @@ class Connect4Game {
 		const place = document.getElementById(`${y}-${x}`);
 		place.append(piece);
 	}
+
+	// endGame: announces the end of the game
+	endGame(msg) {
+		setTimeout(() => alert(msg), 250);
+	}
 }
 
 const game = new Connect4Game();
