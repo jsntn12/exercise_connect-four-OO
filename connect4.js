@@ -6,6 +6,7 @@ class Connect4Game {
 		this.height = height;
 		this.width = width;
 		this.board = [];
+		this.currPlayer = 1;
 		this.makeBoard();
 		this.makeHtmlBoard();
 	}
@@ -26,11 +27,13 @@ class Connect4Game {
 		const htmlBoard = document.getElementById('board');
 		htmlBoard.classList.add('board');
 
+		this.handleGameClick = this.handleClick.bind(this);
+
 		// create column-top and added initial player class
 		const topRow = document.createElement('tr');
 		topRow.setAttribute('id', 'column-top');
 		topRow.classList.add('p1');
-		topRow.addEventListener('click', this.handleClick);
+		topRow.addEventListener('click', this.handleGameClick);
 
 		// creates column-top row where players drop piece
 		for (let x = 0; x < this.width; x++) {
@@ -91,7 +94,7 @@ class Connect4Game {
 
 		// checks for win
 		if (this.checkForWin()) {
-			return this.endGame(`Player ${currPlayer} won!`);
+			return this.endGame(`${this.players[this.currPlayer - 1]} won!`);
 		}
 
 		// checks for tie
@@ -117,7 +120,7 @@ class Connect4Game {
 					y < this.height &&
 					x >= 0 &&
 					x < this.width &&
-					board[y][x] === this.currPlayer
+					this.board[y][x] === this.currPlayer
 			);
 
 		for (let y = 0; y < this.height; y++) {
